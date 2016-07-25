@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>MAP672 Module 2 Template</title>
+    <title>Global Cartographic Gaze</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   
     <style>
@@ -57,6 +57,10 @@
             display: inline-block;
             margin: 0 25px;
         }
+		#map {
+			display: block;
+			border: 4px solid #3e6b93;
+		}
     </style>
 </head>
 
@@ -66,13 +70,12 @@
     <h1>World Map</h1>
     <h2>Representing the Surface of the Earth Digitally</h2>
     <!-- This is creating a paragraph element on the page. Inside the p element is an a element that creates a hyperlink within the paragraph. -->
-    <p>This simplistic representational image of the earth demonstrates that the convention of the cartographic gaze has become highly ingrained in our culture. What is shown here instantly triggers the perception of an understanding in our minds about how the world's continents, oceans, and landmasses are laid out. What we should remember is that this often taken for granted representation of the globe hasn't been the standard for all cultures throughout history and is a relatively new way of visualizing the earth.</p> <a href="https://baconipsum.com/">Bacon ipsum generator.</a>
-    <div id="map"><img src="images/world2.png" alt="world map"></div>
-    <p>paragraph with link: <a href="https://en.wikipedia.org/wiki/Lorem_ipsum">Lorem ipsum</a> dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl.</p>
+    <p>This simplistic representational image of the earth demonstrates that the convention of the cartographic gaze has become highly ingrained in our culture. What is shown here instantly triggers the perception of an understanding in our minds about how the world's continents, oceans, and landmasses are laid out. We should remember that this often taken for granted representation of the globe hasn't been the standard for all cultures throughout history and is a relatively new way of visualizing the earth.</p> 
+    
+	<img id="map" src="images/world2.png" alt="world map">
+	
+    <p>paragraph with link: <a href="https://baconipsum.com/">Bacon ipsum generator.</a> dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl.</p>
     <ul>
-        <li>un-ordered list item 1</li>
-        <li>list item 2</li>
-        <li>list item 3</li>
         <li><a href="http://leafletjs.com/">Leaflet</a></li>
         <li><a href="https://www.mapbox.com/">Mapbox</a></li>
         <li><a href="https://cartodb.com/">CartoDB</a></li>
