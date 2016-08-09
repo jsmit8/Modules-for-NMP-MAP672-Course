@@ -43,6 +43,18 @@
         p {
             font-size: 1em;
             color: #001323;
+            max-width: 65%;
+        }
+        blockquote {
+            max-width: 40%;
+            float: right;
+            background: white;
+            margin-top: 40px;
+        }
+        blockquote span {
+            text-align: right;
+            float: right;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -50,7 +62,9 @@
 <body>
     <header>
         <h1>Three Cities I Love</h1>
-        <h2>I need to be wealthy so I can keep traveling, or keep going to obscure meetings so work pays for it!</h2>
+        <blockquote>"I need to be wealthy so I can keep traveling, or keep going to obscure meetings so work pays for it!" <br><span>&ndash; A recent Ph.D. graduate</span></blockquote>
+        <p>This map shows three cities I love: Anchorage, Boston, and Christchurch, New Zealand.  Boston is the capital of Massachusetts and is wonderfully walkable.  Anchorage is amazing, and contains over 40% of Alaska's population!  Christchurch, New Zealand is the gateway to paradise on the south island.
+        </p>
     </header>
 
     <div id='map'></div>
@@ -58,8 +72,6 @@
     <footer>
         <p>Map created by Jackie Smith, PhD</p>
         <p>Map Source: <b>Leaflet</b> Data Source: <b>Google</b></p>
-        <p>This map shows three cities I love: Anchorage, Boston, and Christchurch, New Zealand.  Boston is the capital of Massachusetts and is wonderfully walkable.  Anchorage is amazing, and contains over 40% of Alaska's population!  Christchurch, New Zealand is the gateway to paradise on the south island.
-        </p>
     </footer>
 
     <script>
@@ -87,10 +99,12 @@
         var cityPop = [366100, 645966, 300950];
         
         var cityCapital = [false, true, false];
+        
         for(var i = 0; i <= cities.length; i++) {
             
             var popup = "<b>"+cities[i]+"</b><br>"
                             +"<b>Population</b>: "+cityPop[i].toLocaleString();
+            
             if(cityCapital[i] === true) {
                
                 popup += "<br> it is the capital city."; 
