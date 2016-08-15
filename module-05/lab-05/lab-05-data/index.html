@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -43,116 +44,129 @@
             font-size: 1em;
             color: #001323;
         }
+        button {
+            font-size: 1.2em;
+            margin-left: 10%;
+        }
         /* Additional style rules go here! */
         
-
     </style>
 </head>
 
 <body>
     <header>
         <h1>Population Information</h1>
-        <h2>for Lexington, Louisville and Richmond Kentucky</h2>
+        <h2>for Lexington, Louisville and Richmond, Kentucky</h2>
     </header>
 
     <div id='map'></div>
-
+    <button id='map-cities'>Map Cities</button>
     <footer>
         <p>Map authored by Jackie Smith, PhD</p>
-        <p>Data Source: Latlong.net</p>
+        <p>Click the 'Map Cities' button, input a value in miles or km, and click on the markers for population             densities of the cities mapped</p>
+         <p>Data Source: Latlong.net and Google</p>
         <p>Kentucky, officially the Commonwealth of Kentucky, is a state located in the east south-central region of the United States.  Kentucky is one of four U.S. states constituted as a commonwealth (the others being Virginia, Pennsylvania, and Massachusetts). Originally a part of Virginia, in 1792 Kentucky became the 15th state to join the Union. Kentucky is the 37th most extensive and the 26th most populous of the 50 United States.
 
 Kentucky is known as the "Bluegrass State", a nickname based on the bluegrass found in many of its pastures due to the fertile soil. One of the major regions in Kentucky is the Bluegrass Region in central Kentucky, which houses two of its major cities, Louisville and Lexington. It is a land with diverse environments and abundant resources, including the world's longest cave system, Mammoth Cave National Park, the greatest length of navigable waterways and streams in the contiguous United States, and the two largest man-made lakes east of the Mississippi River.
 
 Kentucky is also known for horse racing, bourbon distilleries, the historic site My Old Kentucky Home, automobile manufacturing, tobacco, bluegrass music, college basketball, and Kentucky Fried Chicken. <a href="https://en.wikipedia.org/wiki/Kentucky">See Kentucky on Wikipedia</a>
+
         </p>
     </footer>
 
 <script>
     
+    // map options
     var options = {
-        center: [38.0489,-84.5025],
-        zoom: 8
+        center: [38.040584,-84.503716],
+        zoom: 6
     }
     
+    // creates the Leaflet map
     var map = L.map('map', options);
     
+    // requests some map tiles
     var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
         subdomains: 'abcd',
         maxZoom: 19
     });
+    
+    // adds these tiles to the map
     map.addLayer(tiles);
-
-    // begin writing/editing Lab 05 code here
-
-    var lexArea = Number(prompt("Enter data", "Enter the area of Lexington in square miles"));
-    // create a second variable to collect a second city's area here
-    var louisArea = Number(prompt("Enter data", "Enter the area of Louisville in square miles"));
-    // create a third variable to collect a third city's area here
-    var richmondArea = Number(prompt("Enter data", "Enter the area of Richmond in square miles"));
-    prepareData(lexArea,louisArea,richmondArea); // modify this function call to pass all three variables
-
-    function prepareData(lexArea,louisArea,richmondArea) { /* modify function to include 2 more parameters */
-
-        var cities = ["Lexington", "Louisville", "Richmond"]; /* add 2nd and 3rd city names */
-        var cityCoords = [
-            [38.0297, -84.4947],
-            /* include 2nd city lat/lon here */
-            [38.2500, -85.7667],
-            /* include 3rd city lat/lon here */
-            [37.7447, -84.2936]
-
-        ];
+    
+    // write 3 city names as Strings within an array
+    var cities = ["Lexington", "Louisville", "Richmond"];
+    
+    // write a two-dimensional array of the coordinates for each city
+    var cityCoords = [
+        [38.040584, -84.503716],
+        [38.252665, -85.758456],
+        [37.747857, -84.294654]
+    ]
+    
+    // write the populations of the 3 cities as Numbers within an array;
+    var cityPops = [308428, 1269702, 32550];
+    
+    // write the areas of the 3 cities as Numbers within an array;
+    var cityAreas = [285.5, 398, 19.27]; // areas are sq miles
         
-        var cityPops = [308428, 253128, 32550]; /* include 2nd and 3rd city pops here */
+    var button = document.getElementById("map-cities");
+    
+    button.addEventListener("click", function() {
+         
+        // do/while statement to reprompt user if they do not input either miles or km
+        do {   
+            var units = prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
+        } while (units != "miles" && units != "km")
         
-        // Richmond area = 19.3 mi^2, Louisville area = 399 mi^2
+        // console.log(units);
         
-        var cityAreas = [lexArea, louisArea, richmondArea]; /* include 2nd and 3rd city areas */
-
-       // call the mapCities function, passing the 4 arrays created above as arguments
+        // call a function named mapCities, and send the units variable as an argument
+        mapCities(units);
         
-        mapCities(cities, cityCoords, cityPops, cityAreas);
-
-    }
-
-    function mapCities(cities, cityCoords, cityPops, cityAreas) { /* include 2 more parameters here */
-
-        var units = prompt('Units for calculating density', 'Enter "miles" or "km"');
-
-        for(var i = 0; i < cities.length; i++) {
-
-            var density = calcPopDensity(cityPops[i],cityAreas[i],units);  
-                
-                // call a function named calcPopDensity here, passing
-                             //the city population, area, and units as arguments, and assign
-                             //return value to the "density" variable 
-
-            var popup = "<b>"+cities[i]+"</b><br>"
-                            +"<b>Density</b>: "+density.toLocaleString()+" people per sq " + units;
-
+    }); // addEventListener callback function ends here
+    
+    
+    // write a function here named mapCities so that it accepts units as a parameter
+    function mapCities(units){
+        
+        for (i=0; i < cities.length; i++) {
+            var densityValue = calcPopDensity(cityPops[i], cityAreas[i], units);
+            var densityValue = densityValue.toFixed(0);
+            var popup = "<b>"+cities[i]+":"+"</b><br>"
+            +"Has a population density of<br>"
+            +densityValue+" people per square "+units;
+            
             L.marker(cityCoords[i]).addTo(map)
                 .bindPopup(popup);
-
         }
     }
-
-    // write a function named calcPopDensity which accepts three arguments, the  
-    // population, the area of a single city, and the units ('miles' or 'km') entered by
-    // the user above. The function should calculate the density of the city with these two 
-    // values and return the result to where the function was called.
-    function calcPopDensity(cityPop, area, units) {
-        if (units = "km") {
-            area = area * 2.59;
-            console.log("Converted km to mi");
-
-        } 
-        return cityPop / area;
+    
+    
+    // write a function named calcPopDensity here so that it accepts a single city's
+    // population, area, and the value for units determined by the user
+    function calcPopDensity (a, b, c) {
+        
+        var pop = a;
+        var area = b;
+        var units = c;
+        if (units=="miles") {
+            var density = (pop / area);
+            return density;
+        } else {
+            if (units=="km");
+            var kmarea = (area * 2.589);
+            var kmdensity = (pop / kmarea);
+            return kmdensity;
+        }
+                
     }
-
-    // end writing/editing Lab 05 code here
-
+            
+    
+    
+    
+    
 </script>
     
 </body>
