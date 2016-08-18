@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Lab 06 Starter Template</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: Lato, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            padding: 6px 10%;
+        }
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+            color: #001323;
+        }
+        h2 {
+            display: inline-block;
+            color: #001323;
+        }
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto;
+        }
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+        }
+        .kentucky-blue {
+            color: #3333FF;
+        }
+        .badger-red {
+            color: #b70101;
+        }
+        .tennessee-orange {
+            color: #FF8200;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Land Grant College Cities in KY, WI, and TN</h1>
+        <h2>Lexington, Madison, and Knoxville</h2>
+    </header>
+
+    <div id='map'></div>
+
+    <footer>
+        <p>Map authored by Jackie Smith, PhD</p>
+        <p>Click on the map markers to learn the names of the land-grant colleges in those states.</p>
+        <p>Land-grant colleges are those colleges in the United States created as a result of the
+<a href="https://en.wikipedia.org/wiki/Land-grant_university">Morrill Land-Grant College Act of 1862</a>. This act, and subsequent legislation, allowed for the grant of lands from the federal government to the states in order to establish schools to teach the agricultural and mechanical arts. All states have at least one, some states have more.  This map shows three: The University of Kentucky, University of Wisconsin, and University of Tennessee.  I attended two of these Land-Grant schools: <a href="http://www.wisc.edu">The University of Wisconsin</a> @ Madison, and <a href="http://www.uky.edu/UKHome/">The University of Kentucky</a>.
+        </p>
+    </footer>
+
+    <script>
+        var map = L.map('map', {
+            center: [40,-85],
+            zoom: 5,
+        });
+       
+        var tiles = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+        map.addLayer(tiles);
+        
+        // Begin writing/modifying code for Lab 06 here
+        
+        // Create cities array containing three objects, one for each city, with a nested properties object 
+        
+        var cities = [
+             {
+                 name: "Lexington",
+                 properties: {
+                     coordinates: [38.038684, -84.504225],
+                     population: 314488,
+                     state: "KY",
+                     school: "University of Kentucky",
+                     logo: "UK.png"
+                 }
+             },
+             {
+                 name: "Madison",
+                 properties: {
+                     coordinates: [43.0766, -89.4125],
+                     population: 243344,
+                     state: "WI",
+                     school: "University of Wisconsin",
+                     logo: "bucky.png"
+                 }
+             },
+             {
+                 name: "Knoxville",
+                 properties: {
+                     coordinates: [35.9544, -83.9295],
+                     population: 787033,
+                     state: "TN",
+                     school: "University of Tennessee",
+                     logo: "UT.png"
+                 }
+             }
+        ];
+        
+//        for (var i=0; i<cities.length; i++) {
+//            console.log(cities[i]);
+//        }
+        
+        // After cities object array is created, use a FOR loop to populate variables and add markers
+        
+        for (var i=0; i<cities.length; i++) {
+            
+            var props = cities[i].properties;
+            
+            var popup = buildPopup(props.logo, cities[i].name, props.school, props.population, props.state);
+            
+            L.marker(props.coordinates).addTo(map).bindPopup(popup);
+            
+            // Console log statement for fun
+            console.log("The population of "+cities[i].name+" is "+props.population);
+        };
+        
+        // Declare function to establish color and return popup values
+        
+        function buildPopup (logo, name, school, pop, state) {
+            
+            if (state == "KY") {
+                var colorClass = "kentucky-blue";
+            } else if (state == "WI") {
+                var colorClass = "badger-red";
+            } else {
+                var colorClass = "tennessee-orange";
+            }
+            
+            return "<img class='logo' src='"+logo+"'>"+
+                   "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
+                   "<b>School: </b>"+school+"<br>"+
+                   "<b>City Population</b>: "+pop.toLocaleString()+"<div>";
+            
+        };
+            
+            
+            
+        
+          
+    </script>
+    
+</body>
+
+</html>
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status Help
