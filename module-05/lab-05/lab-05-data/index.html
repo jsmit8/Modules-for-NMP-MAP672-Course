@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 05 Starter Template</title>
+    <title>Population Information</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -131,12 +131,12 @@ Kentucky is also known for horse racing, bourbon distilleries, the historic site
     // write a function here named mapCities so that it accepts units as a parameter
     function mapCities(units){
         
-        for (i=0; i < cities.length; i++) {
-            var densityValue = calcPopDensity(cityPops[i], cityAreas[i], units);
-            var densityValue = densityValue.toFixed(0);
-            var popup = "<b>"+cities[i]+":"+"</b><br>"
-            +"Has a population density of<br>"
-            +densityValue+" people per square "+units;
+        for (var i=0; i < cities.length; i++) {
+            var densityValue = calcPopDensity(cityPops[i], cityAreas[i], units).toFixed(0);
+            // var densityValue = densityValue;
+            var popup = "<b>" + cities[i] + ":" + "</b><br>"
+                + "Has a population density of<br>"
+                + densityValue+" people per square " + units;
             
             L.marker(cityCoords[i]).addTo(map)
                 .bindPopup(popup);
@@ -146,18 +146,14 @@ Kentucky is also known for horse racing, bourbon distilleries, the historic site
     
     // write a function named calcPopDensity here so that it accepts a single city's
     // population, area, and the value for units determined by the user
-    function calcPopDensity (a, b, c) {
-        
-        var pop = a;
-        var area = b;
-        var units = c;
+    function calcPopDensity (pop, area, units) {
+   
         if (units=="miles") {
-            var density = (pop / area);
+            var density = pop/area;
             return density;
-        } else {
-            if (units=="km");
-            var kmarea = (area * 2.589);
-            var kmdensity = (pop / kmarea);
+        } else if (units=="km") {
+            var kmarea = area * 2.589;
+            var kmdensity = pop / kmarea;
             return kmdensity;
         }
                 
