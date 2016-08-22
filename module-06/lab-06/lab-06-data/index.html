@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 06 Starter Template</title>
+    <title>Land Grant Schools</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -98,7 +98,7 @@
                      population: 314488,
                      state: "KY",
                      school: "University of Kentucky",
-                     logo: "UK.png"
+                     logo: "images/UK.png"
                  }
              },
              {
@@ -108,7 +108,7 @@
                      population: 243344,
                      state: "WI",
                      school: "University of Wisconsin",
-                     logo: "bucky.png"
+                     logo: "image/Bucky.png"
                  }
              },
              {
@@ -118,14 +118,11 @@
                      population: 787033,
                      state: "TN",
                      school: "University of Tennessee",
-                     logo: "UT.png"
+                     logo: "images/UT.png"
                  }
              }
         ];
         
-//        for (var i=0; i<cities.length; i++) {
-//            console.log(cities[i]);
-//        }
         
         // After cities object array is created, use a FOR loop to populate variables and add markers
         
@@ -156,7 +153,7 @@
             return "<img class='logo' src='"+logo+"'>"+
                    "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
                    "<b>School: </b>"+school+"<br>"+
-                   "<b>City Population</b>: "+pop.toLocaleString()+"<div>";
+                   "<b>City Population</b>: "+pop.toLocaleString()+"</div>";
             
         };
             
