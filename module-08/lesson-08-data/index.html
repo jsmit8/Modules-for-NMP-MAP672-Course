@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Lesson 08 Template</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: Lato, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            padding: 6px 10%;
+        }
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+            color: #001323;
+        }
+        h2 {
+            display: inline-block;
+            color: #001323;
+        }
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto;
+        }
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>U.S. Green Powerplants</h1>
+        <h2>Mapping Our Energy Future</h2>
+    </header>
+
+    <div id='map'></div>
+
+    <footer>
+        <p>Map authored by Jackie Smith, PhD</p>
+        <p>This map shows the location of solar, geothermal, and biomass power plants in the United States that produce greater than 100 MW of power.</p>
+    </footer>
+<!--    We can load the power-plants geojson file into our page with the script below-->
+    <script src="power-plants.js"></script>
+    <script>
+        
+//        defining the map
+        var map = L.map('map', {
+            center: [36, -94], // centered in Estonia
+            zoom: 4
+        });
+        var tiles =         L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+        });  
+        
+        tiles.addTo(map);
+        console.log(plants);
+//        Add plants to the map using circleMarker
+        L.geoJson(plants, {
+            pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, {
+                    color: 'white',
+                    weight: 1,
+                    fillColor: 'green',
+                    fillOpacity: 1,
+                    radius: 8
+                });
+            },
+//            Below we are adding a filter using the L.geoJson() method's filter option, you can use as advanced filter as you want based on the expression that is added. I chose to look to see if the fuel source was Solar, Geothermal, or Biomass and if the capacity in megawatts is greater than 100.
+            filter: function(feature, layer) {
+                if((feature.properties.fuel_source.Geothermal || feature.properties.fuel_source["Solar"] || feature.properties.fuel_source.Biomass) && feature.properties.capacity_mw > 100){
+                    return feature;
+                }
+            }
+        }).addTo(map);
+      // build your Leaflet map here!
+                  
+    </script>
+    
+</body>
+
+</html>
