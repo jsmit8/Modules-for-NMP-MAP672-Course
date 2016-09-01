@@ -59,16 +59,17 @@
         <p>Map authored by <b><i>Jackie Smith, PhD</i></b></p>
         <p>Created <b><i>September 2016</i></b></p>
         <p>Data source:  <a href="http://www.eia.gov/electricity/data/eia923/"> U.S. Energy Information Administration </a>, and  provided by Rich Donohue  at the University of Kentucky for the <a href="http://newmapsplus.uky.edu/">New Maps Plus Program</a> .</p>
-        <p>Nuclear power plants are light blue in color and will turn pale orange when highlighted, then a medium blue after you are done to keep track of which plants you have visited. Natural gas and petroleum power plants are light green and will turn pale yellow when highlighted, then turn a medium green after you are done to keep track of which plants you have visited. Clicking on the marker will tell you how much energy is produced at that location. Energy produced is expressed in <b><i>MegaWatts</i></b> </p>
+        <p>Nuclear power plants are light blue in color and will turn pale orange when highlighted, then a medium blue after you are done to keep track of which plants you have visited. Natural gas and petroleum power plants are light green and will turn pale yellow when highlighted, then turn a medium green after you are done to keep track of which plants you have visited. Clicking on the marker will tell you how much energy is produced at that location. Energy produced is expressed in <b><i>MegaWatts.</i></b> </p>
     </footer>
 
     <script src="power-plants.js"></script>
     <script>
+        // center the map and set zoom level
       var map = L.map('map', {
           center: [36,-94],
           zoom: 4,
       });
-      
+      // tiles used and added to map
       var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
           subdomains: 'abcd',
@@ -76,7 +77,7 @@
       });  
       
       tiles.addTo(map);
-        
+     // plant information and coloring 
     plants.features.sort(function(a, b) {
         return b.properties.capacity_mw - a.properties.capacity_mw;
     });
@@ -114,7 +115,7 @@
                               +"<b>"+"Natural Gas: "+ "</b>" +feature.properties.fuel_source['Natural Gas'] + "MW");
           }
       }).addTo(map);
-        
+     // math functions   
     function getRadius(area) {
         var radius = Math.sqrt(area/Math.PI);
         return radius * .6;
