@@ -59,15 +59,15 @@
 <body>
     <header>
         <h1>Environmentally Friendly Power Plants in the United States </h1>
-        <h2>An interactive map of solar, wind & nuclear power</h2>
+        <h2>An interactive map of solar, wind, nuclear & hydro power</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
         <p>Map authored by <a href="http://vdl.uky.edu/FacultyAndSectionHeads/DrJackieSmith.aspx">Dr. Jackie Smith</a></p>
-        <p>This map displays solar, wind, and nuclear power plants in the United States. The size of the circle for each plant is porportional to the total generation capacity. Clicking in an area will filter the map to a 500 km radius. If you click on an individual power plant, more information about the plant will display. If you click on your 500 km radius, a filter will appear showing the total generation capacity in the filter area. Data source:
-            <a href="http://www.eia.gov/electricity/data/eia923/">US Energy Information Administration</a> and provided by Rich Donahue at <a href="http://www.uky.edu">The University of Kentucky</a> for <a href="http://newmapsplus.uky.edu/">NewMapsPlus</a> MAP672 class.
+        <p>This map displays solar, wind, nuclear and hydro power plants in the United States. The size of the circle for each plant is porportional to the total generation capacity. Clicking in an area will filter the map to a 500 km radius. If you click on an individual power plant, more information about the plant will display. If you click on your 500 km radius, a filter will appear showing the total generation capacity in the filter area. Data source:
+            <a href="http://www.eia.gov/electricity/data/eia923/">US Energy Information Administration</a> and provided by <a href="https://geography.as.uky.edu/user/10576">Dr. Rich Donohue</a> at <a href="http://www.uky.edu">The University of Kentucky</a> for <a href="http://newmapsplus.uky.edu/">NewMapsPlus</a> MAP672 class.
     </footer>
 
     <script src="power-plants.js"></script>
@@ -100,15 +100,19 @@
         var layerInfo = {
             Nuclear: {
                 source: "Nuclear"
-                , color: '#a6cee3'
+                , color: '#fb6a4a'
             }
             , Wind: {
                 source: "Wind"
-                , color: '#cccccc'
+                , color: '#bdc9e1'
             }
             , Solar: {
                 source: "Solar"
                 , color: "#fecc5c"
+                }
+            , Hydro: {
+                source: "Hydro"
+                , color: "#2b8cbe"
             }
             
         };
@@ -140,6 +144,7 @@
             var windCapacity = 0;
             var nuclearCapacity = 0;
             var solarCapacity = 0;
+            var hydroCapacity = 0;
             var currentCap = 0;
             var popUpText = '';
             var emptyObject = {
@@ -147,7 +152,7 @@
             
 //            setting up the spotlight filter circle
             var otherCircle = L.circle(e.latlng, 500000, {
-                stroke: false,
+                stroke: true,
                 color: 'White',
                 fillColor: 'White',
                 fillOpacity: 0.1
@@ -206,9 +211,10 @@
             return radius * .8;
         }
         var sourcesLabels = {
-            "<font color='#a6cee3'><b>Nuclear</b></font>": geoJsonLayers.Nuclear
-            , "<font color='#cccccc'><b>Wind</b></font>": geoJsonLayers.Wind
+            "<font color='#fb6a4a'><b>Nuclear</b></font>": geoJsonLayers.Nuclear
+            , "<font color='#bdc9e1'><b>Wind</b></font>": geoJsonLayers.Wind
             , "<font color='#fecc5c'><b>Solar</b></font>": geoJsonLayers.Solar
+            , "<font color='#2b8cbe'><b>Hydro</b></font>": geoJsonLayers.Hydro
         }
         L.control.layers(null, sourcesLabels, {
             collapsed: false
