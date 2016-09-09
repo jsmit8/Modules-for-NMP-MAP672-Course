@@ -1,14 +1,14 @@
 # Lesson 10: building a portfolio page and hosting
 
-Within this lesson we're going to achieve two principle goals: 1.) creating and hosting an online portfolio page for sharing some of the maps created in MAP671 and MAP672, and 2.) using GitHub pages to serve web maps we've made. This lesson will guide you through building and customizing an HTML portfolio page from template and teach you how to host your maps on a remote web server (GitHub Pages).
+Within this lesson we're going to achieve two principal goals: 1.) creating and hosting an online portfolio page for sharing some of the maps created in MAP671 and MAP672, and 2.) using GitHub pages to serve web maps we've made. This lesson will guide you through building and customizing an HTML portfolio page from the template and teach you how to host your maps on a remote web server (GitHub Pages).
 
 ## 1. Web hosting and creating a GitHub Pages repository for an online portfolio
 
 So far, we've been developing our web maps locally and using GitHub repositories to host and share our code (and various other files).  But, the point of making web maps is to share them with the general public, *on the web*. How do we do this?
 
-Specifically, we've been using a web *server* that Brackets runs to "serve" our web document within a web browser on our local machine. We need a web server available to "host" our projects as well, but one that is accessible to the broader public through a URL address (i.e., not our own laptops or the lab computers). While there are various web hosting companies that can provide you with web server space, GitHub fortunately offers this service as well. These are a special kind of GitHub repository, referred to as [GitHub Pages](https://pages.github.com/). 
+Specifically, we've been using a web *server* that Brackets runs to "serve" our web document within a web browser on our local machine. We need a web server available to "host" our projects as well, but one that is accessible to the broader public through a URL address (i.e., not our own laptops or the lab computers). While various web hosting companies can provide you with web server space, GitHub, fortunately, offers this service as well. These are a special kind of GitHub repository, referred to as [GitHub Pages](https://pages.github.com/). 
 
-While these repositories are similar to the ones we've been using to commit, backup, and share our code, the HTML documents within these GitHub Pages repositories will be "served" to the user as HTTP requests and rendered within their browser (rather than displayed as raw HTML text like our current repos do).
+While these repositories are similar to the ones we've been using to commit, backup, and share our code, the HTML documents within these GitHub Pages repositories will be "served" to the user as HTTP requests and rendered within their browser (rather than displayed as raw HTML text like our current repositories do).
 
 To create our GitHub Pages repository, we'll be following the instructions provided on GitHub's website: [GitHub Pages](https://pages.github.com/). We couldn't write these any clearer, so follow those steps.
 
@@ -47,36 +47,36 @@ For their step 3, *Create an index file,* you can simply use the starter *index.
 
 This section will walk us through building a basic, single page HTML document that will serve as the main portfolio page for an online portfolio. While, when ready, we will be pushing this up to the remote GitHub (Pages) repository for deployment to the general public, it's still a best practice to develop and test these locally. When you sync these local commits with the GitHub remote repository in your GitHub pages, those changes are then live and viewable to the public.
 
-In the previous section we created a new repository (*username*.github.io) in the web interface of GitHub, and then we pulled this repository to our local machine. We then created a file named *index.html* within that repository, added some minimal HTML, and then pushed that change back up to the repository. Now we will continue to edit that file to make a web portfolio page.
+In the previous section we created a new repository (*username*.github.io) in the web interface of GitHub, and then we pulled this repository to our local machine. We then created a file named *index.html* within that repository, added some minimal HTML, and then pushed that change back up to the repository. Now we will continue to edit that file to make a portfolio web page.
 
-This module walks us through writing the HTML and CSS, and organizing some accompanying image files, to make a web page that will look something like this:
+This module walks us through writing the HTML and CSS and organizing some accompanying image files to make a web page that will look something like this:
 
-![Example portfolio web page layout](lesson-10-graphics/portfolio-complete.gif)  
+![Example portfolio web page layout](lesson-10-graphics/portfolio-complete.png)  
 **Figure 1.** Example Portfolio Web Page Layout
 
-While you may eventually use JavaScript to enhance the experience of using your web portfolio, for now we won't be writing any JavaScript. We're going to build this webpage solely using HTML and CSS.
+While you may eventually use JavaScript to enhance the experience of using your web portfolio, for now, we won't be writing any JavaScript. We're going to build this web page solely using HTML and CSS.
 
 ### Thinking about the content for your portfolio
 
 A good portfolio will demonstrate some of your best work and give a potential employer or client a sense of your strengths and skills. With a portfolio, less is more. Rather than showing every map you've produced, think back over the maps you've created in MAP671 and MAP672. Select a couple/few statics maps at most from MAP671. Perhaps you'd like to include one of the maps made with CartoDB (in which case all you need for that is the URL), and one or two from MAP672 (like from Modules 08 or 09).
 
-We're going to create a single page portfolio that displays a smaller cropped image of the map, and then we'll link to either a downloadable full resolution version of the map (i.e., a PDF or PNG file produced in MAP671), or to a web hosted version of the web map (either the one hosted by CartoDB or created with a gh-pages branch of a GitHub hosted repository, discussed in Part 2 of this lesson).
+We're going to create a single page portfolio that displays a smaller cropped image of the map, and then we'll link to either a downloadable full resolution version of the map (i.e., a PDF or PNG file produced in MAP671), or to a web-hosted version of the web map (either the one hosted by CartoDB or created with a gh-pages branch of a GitHub hosted repository, discussed in Part 2 of this lesson).
 
 Beyond simply showing an image of the map and providing a link to it, the portfolio page content can also demonstrate some of the knowledge, skills, and processes you're mastering. Consider writing succinct summaries of each of the products you're displaying, informing people of the design decisions and technical solutions required to reach the end product. 
 
 It may also be advisable to list the data sources. Especially for the web maps, it's good to provide a link to the GitHub hosted codebase so people can enjoy reading all your fancy JavaScript!
 
-Spend some time thinking about and gathering these assets before continuing on.
+Spend some time thinking about and gathering these assets before continuing.
 
-This lesson will demonstrate creating one for a static map image, one for the CartoDB hosted map, and one of the web maps.
+This lesson will demonstrate creating one for a static map image, one for the CartoDB hosted map and one of the web maps.
 
 ### Creating structured content with HTML
 
 So far throughout this course, we've written very little HTML. We've used basic `<h1></h1>` tags to describe the header titles for our maps. We've used `<footer></footer>` tags to enclose meta content within the web pages holding our maps. We've used a `<div></div>` tag with an id attribute of "map" (e.g. `<div id="map"></div>`) for holding our dynamically produced Leaflet web maps. 
 
-We'll begin building our portfolio web document by structuring our content within HTML tags. Recalling what we learned in Module 02, we use HTML to structure (or "describe") our content, and we use Cascading Style Sheets (or CSS rules) to determine how that content is displayed, its "look and feel". This distinction is also the classic distinction between *content* (HTML) and *form* (CSS) made within design.
+We'll begin building our portfolio web document by structuring our content within HTML tags. Recalling what we learned in Module 02, we use HTML to structure (or "describe") our content, and we use Cascading Style Sheets (or CSS rules) to determine how that content is displayed, its "look and feel." This distinction is also the classic distinction between *content* (HTML) and *form* (CSS) made within design.
 
-We'll begin writing our HTML directly beneath the opening `<body>` tag. For this example, we're going to have a main page title we'll enclose within the `<h1>` tag, as well as a subheading we'll enclose within a `<h2>` tag. For some styling purposes we'll see later on, we're also going to wrap both of these header tags within an HTML tag named `<header>`. So our HTML will look like this (further examples will omit the `<body></body>` tags, but understand that all HTML displayed on the webpage will be contained within these tags):
+We'll begin writing our HTML directly beneath the opening `<body>` tag. For this example, we're going to have the main page title we'll enclose within the `<h1>` tag, as well as a subheading we'll enclose within a `<h2>` tag. For some styling purposes, we'll see later on, we're also going to wrap both of these header tags within an HTML tag named `<header>`. So our HTML will look like this (further examples will omit the `<body></body>` tags, but understand that all HTML displayed on the web page will be contained within these tags):
 
 ```html
 <body>
@@ -87,14 +87,14 @@ We'll begin writing our HTML directly beneath the opening `<body>` tag. For this
 </body>
 ```
 
-You'll of course want to use your own name and some title to describe yourself or your work, such as "Matt Zook: Big Data Wrangler and Purveyor of Fine Iguanas." If we save these changes and refresh our browser (Brackets may be automatically updating these content changes as you enter them, which is super cool!), we see some basic unstructured HTML.
+You'll, of course, want to use your own name and some title to describe yourself or your work, such as "Matt Zook: Big Data Wrangler and Purveyor of Fine Iguanas." If we save these changes and refresh our browser (Brackets may be automatically updating these content changes as you enter them, which is super cool!), we see some basic unstructured HTML.
 
 ![Un-styled header tags](lesson-10-graphics/header-tags.png)  
 **Figure 2.** Un-styled header tags.
 
 Now we want to think about how to describe the content we wish to display for each project. What do you want your content to say? Once we establish this, we can then think about what the appropriate HTML elements are used to describe this content. 
 
-For this example, we want to entice our user to look at our map by showing them a nice image of the map (`<img>`). We also what a heading to serve as a subtitle for that map (`<h3></h3>`). Perhaps we want to offer the reader a couple paragraphs that describe what the map says or does (`<p></p>`), or to highlight some particular functionality or technology used, to grab the attention of a potential employer or client. We may wish to list some features as well (`<ul><li></li></ul>`) and/or provide links to the data sources or the code for the map hosted on our GitHub repo (`<a href="">`). Before we start entering in our content, we can build a snippet of HTML skeleton that we can then copy and reuse for each of our portfolio project entries. We'll so structure each of these entries within some `<section></section>` tags.
+For this example, we want to entice our user to look at our map by showing them a beautiful image of the map (`<img>`). We also what a heading to serve as a subtitle for that map (`<h3></h3>`). Perhaps we want to offer the reader a couple of paragraphs that describe what the map says or does (`<p></p>`), or to highlight some particular functionality or technology used, to grab the attention of a potential employer or client. We may wish to list some features as well (`<ul><li></li></ul>`) and/or provide links to the data sources or the code for the map hosted on our GitHub repo (`<a href="">`). Before we start entering in our content, we can build a snippet of HTML skeleton that we can then copy and reuse for each of our portfolio project entries. We'll so structure each of these entries within some `<section></section>` tags.
 
 We can replace the `<p>Hello World! I'm going to be a portfolio page.</p>` code with the following, beneath the `<header></header>` content:
 
@@ -129,26 +129,26 @@ Let's deal with the image first. Since images aren't text (unless we're creating
 
 Depending on if you're using a Mac or a PC, the keyboard commands will be different. Consult online documentation and consider your options depending on your operating system:
 
-* Screenshots on a mac: [https://support.apple.com/en-us/HT201361](https://support.apple.com/en-us/HT201361)
+* Screenshots on a Mac: [https://support.apple.com/en-us/HT201361](https://support.apple.com/en-us/HT201361)
 * Screenshots on Windows 8: [http://windows.microsoft.com/en-us/windows/take-screen-capture-print-screen#take-screen-capture-print-screen=windows-8](http://windows.microsoft.com/en-us/windows/take-screen-capture-print-screen#take-screen-capture-print-screen=windows-8)
 
 Different options for capturing screenshots include saving them to file or copying them to the clipboard and then pasting into a photo-editing program.
 
 **2. Crop and resize your image**
 
-Remember that we're hosting these images on the web. The larger the image, the larger the file size, the longer it will take for your web page to load for your user. Furthermore, since an image screenshot may be very large (native resolution for a 15" Macbook with retina display is 2560 by 1600 pixels), it may be necessary to reduce the size of the file.
+Remember that we're hosting these images on the web. The larger the image, the larger the file size, the longer it will take for your web page to load for your user. Furthermore, since an image screenshot may be large (native resolution for a 15" Macbook with retina display is 2560 by 1600 pixels), it may be necessary to reduce the pixel dimensions and size of the file.
 
-You may also wish to not show the entire map as this image, but focus on a particular area. Therefore, you may wish to crop it in some way.
+You may also want not to show the entire map as this image, but focus on a particular area and therefore crop it in some way.
 
-There are various ways to crop and resize an images. You may use software applications such as Photoshop or Inkscape. There are also various online web applications that allow you to upload an image, crop/resize, and then download (try a Google search to find these).
+There are various ways to crop and resize an image. You may use software applications such as Photoshop or Inkscape. There are also various online web applications that allow you to upload an image, crop/resize, and then download (try a Google search to find these).
 
-**DID YOU KNOW!?!** Your tuition you paid for New Maps Plus included fees in support of software available to you as a student to download and use. Including in this software is Adobe Create Cloud Core 2015, which includes such industry standards as Photoshop, Illustrator, InDesign, Premiere. Go to [University of Kentucky Software Downloads](https://download.uky.edu/) and login with your Link Blue credentials.
+**DID YOU KNOW!?!** Your tuition you paid for New Maps Plus included fees in support of software available to you as a student to download and use. Included in this software is Adobe Create Cloud Core 2015, which includes such industry standards as Photoshop, Illustrator, InDesign, Premiere. Go to [University of Kentucky Software Downloads](https://download.uky.edu/) and log in with your Link Blue credentials. 
 
 For the layout of this design, we've chosen to display our images at a width of 388px and a height of 240px (which just happens to be the [golden ratio](http://en.wikipedia.org/wiki/Golden_ratio)). The size of your images is a design decision, and that is up to you.
 
-Before saving your image to your working directory (i.e., your local GitHub Pages repository directory with the `index.html` file in it), create a subdirectory within it and name it *images*. Its a good practice to store media assets like images in their own directory. Save your image within this *images* directory.
+Before saving your image to your working directory (i.e., your local GitHub Pages repository directory with the `index.html` file in it), create a subdirectory within it and name it *images*. It's good practice to store media assets like images in their own directory. Save your image within this *images* directory.
 
-**NOTE:** for the static image, you may simply be able to open your original, full-resolution map image in a program such as Photoshop or InkScape and export it as a smaller size (hint: Choose File -> Save for Web in Photoshop).
+**NOTE:** for the static image, you may simply be able to open your original, full-resolution map image in a program such as Photoshop or InkScape and export it as a smaller size (hint: *Choose File -> Save for Web* in Photoshop).
 
 **3. Provide a relative link to the image within the HTML**
 
@@ -158,7 +158,7 @@ Once we've done that, we can then link to that image from within our HTML to dis
 <img src="images/ocean-depth.png" alt="map of ocean depths" />
 ```
 
-Provided the image is saved to the correct directory, and we've given it the right path, our refreshed browser should now be displayed within the web page (note that we can see the bullets for the two empty list items):
+Provided you've saved the image to the correct directory, and we've given it the right path, our refreshed browser should now be displayed within the web page (note that we can see the bullets for the two empty list items):
 
 ![Portfolio image displayed in the HTML document](lesson-10-graphics/image-displayed.png)  
 **Figure 03.** Portfolio image displayed in the HTML document
@@ -183,13 +183,13 @@ Note that we've provided a title for our map within the `<h3></h3>` tags, some t
 ![Un-styled HTML content for a single portfolio project entry](lesson-10-graphics/content-un-styled.png)  
 **Figure 04.** Un-styled HTML content for a single portfolio project entry.
 
-We've provided a relative link here to a file named *oceans-depth.png*, which resides in a directory named *images*. This is the low-res image we created for displaying within the page. We also want to give the user to see our larger map. Let's consider storing such images within another sub directory of this repository we'll name *maps*. Create this directory and then copy the full resolution images you'll like to share into this directory. We can then update the HTML so that the user can click on some link text and download the file.
+We've provided a relative link here to a file named *oceans-depth.png*, which resides in a directory named *images*. This is the low-res image we created for displaying within the page. We also want to give the user to see our larger map. Let's consider storing such images within another subdirectory of this repository we'll name *maps*. Create this directory and then copy the full resolution images you'll like to share into this directory. We can then update the HTML so that the user can click on some link text and download the file.
 
 Update the line with the link to your map to do this. In this example, there is a file named *ocean-depth.pdf* within a directory named *maps*:
 
 `<li>See the map: <a href="maps/ocean-depth.pdf">Depth of the oceans</a></li>`
 
-Also, it's a good idea to give the user multiple links to access your map (you really want them to click on the link and check it out!). So, we'll also wrap both the image of our map and the map title content within our `<h3></h3>` tags in `<a></a>` tags as well. We can also use the HTML attribute `target="_blank"` to open the map in a new page (or download it), so the user isn't directed away from our web page.
+Also, it's a good idea to give the user multiple links to access your map (you want them to click on the link and check it out!). So, we'll also wrap both the image of our map and the map title content within our `<h3></h3>` tags in `<a></a>` tags as well. We can also use the HTML attribute `target="_blank"` to open the map in a new page (or download it), so the user isn't directed away from our web page.
 
 ```html
 <section>
@@ -238,13 +238,13 @@ Our webpage is now composed of beautifully structured content:
 ![Un-styled HTML content for a portfolio page](lesson-10-graphics/content-un-styled.gif)  
 **Figure 05.** The un-styled HTML content for a portfolio page.
 
-This is a perfectly valid, functional webpage, and completely accessible. However, it could use some style improvements to make it more aesthetically attractive and usable. Let's turn to some CSS rules now to improve this.
+What we have is a perfectly valid, functional web page, and completely accessible. However, it could use some style improvements to make it more aesthetically attractive and usable. Let's turn to some CSS rules now to improve this.
 
 ### Styling our HTML content with CSS
 
 While it's tempting to say that these HTML elements are completely un-styled, this isn't quite correct. Notice how the `<h1>` content is larger that the `<h2>` content, and there's space between these? The actor links are colored blue and underlined. There's nothing in the HTML that's telling the browser to display them like this.
 
-The web browser is actually applying its own default styles to these elements. All browsers do this, which is somewhat problematic, because browsers are not consistent with their default styles. For this reason, web pages end up looking very different across different browsers. It is therefore a good practice within web design to, before writing our own custom CSS style rules, to "reset" or "normalize" all the browser's default style rules. We do this by loading an external, remotely-linked style sheet. We recommend using [normalize.css](http://necolas.github.io/normalize.css/) for this.
+The web browser is actually applying its own default styles to these elements. All browsers do this, which is somewhat problematic because browsers are not consistent with their default styles. For this reason, web pages end up looking very different across different browsers. It is, therefore, a good practice within web design too, before writing our own custom CSS style rules, to "reset" or "normalize" all the browser's default style rules. We do this by loading an external, remotely-linked style sheet. We recommend using [normalize.css](http://necolas.github.io/normalize.css/) for this.
 
 We can copy the URL link to a CDN version of *normalize.css* and load it within the head of our document, before we start writing our our custome styles (i.e., before the `<style></style>` tags):
 
@@ -259,7 +259,7 @@ If we refresh our browser, we can see some subtle changes in the presentation of
 
 Now let's start writing our own CSS rules to select our various HTML elements and apply various properties to them. We'll do this to affect both the layout of elements in relation to each other, as well how they are displayed individually.
 
-First, we'll write a rule that gets applied to the entire body of the document. Here we're giving the body a background color encoded with the hexadecimal value of `#f5f5f5` (our "whitesmoke" color). We're also assigning a *font-family* property to the body, which all elements will inherit, unless otherwise specified. Here, we're asking the browser to first attempt to use a typeface named *Imprima*, and if its not available, to use another sans-serif font (we could list as many fonts as we wish here). 
+First, we'll write a rule that gets applied to the entire body of the document. Here we're giving the body a background color encoded with the hexadecimal value of `#f5f5f5` (our "whitesmoke" color). We're also assigning a *font-family* property to the body, which all elements will inherit, unless otherwise specified. Here, we're asking the browser first to attempt to use a typeface named *Imprima*, and if its not available, to use another sans-serif font (we could list as many fonts as we wish here). 
 
 ```css
 body {  
@@ -268,7 +268,7 @@ body {
 }
 ```
 
-But *Imprima* isn't a common font, so how do we know that the user's browser supports it? Before a couple years ago, we couldn't assume this, and webpages typically all supported the same set of common fonts. Fortunately, web fonts have greatly improved, in part thanks to  projects like [Google Fonts}(http://www.google.com/fonts), which make a wide array of web fonts available for use in web pages.
+But *Imprima* isn't a common font, so how do we know that the user's browser supports it? Before a couple years ago, we couldn't assume this, and web pages typically all supported the same set of common fonts. Fortunately, web fonts have greatly improved, in part thanks to  projects like [Google Fonts}(http://www.google.com/fonts), which make a wide array of web fonts available for use in web pages.
 
 To help make our web page display the type in *Imprima*, we follow the instructions for including it in our document: [http://www.google.com/fonts#UsePlace:use/Collection:Imprima(http://www.google.com/fonts#UsePlace:use/Collection:Imprima)]. We've chosen the "Standard" method and linked to Google's style sheet within the head of our document, between our link for the normalize.css and our customer styles:
 
@@ -344,7 +344,7 @@ Next, we'll select the elements we're using within each of our sections and styl
 
 The result of which we can see here:
 
-![Section styles have been applied](lesson-10-graphics/section-styled.gif)  
+![Section styles have been applied](lesson-10-graphics/section-styled.png)  
 **Figure 08.** Web page with section styles applied.
 
 Next, we want to style the layout of the content within our sections. However, rather than directly selection the elements using their tag name (i.e., `<section>`), we'll first give these element class names within the HTML. Let's give each section a class attribute value of *project* and each of our images a class attribute value of *project-image* (remember we can apply class rules to multiple HTML elements). We'll write these attributes directory into our HTML:
@@ -410,7 +410,7 @@ While we could create a *gh-pages* branch on our MAP672 repository and share the
 
 Second, part of the reason we host our code and maps on GitHub is to enable collaboration. We want other people to fork our repositories and help make it better by editing the code and doing pull requests (in a similar way I've been doing with your grading). It's not desirable to people to clone or fork our entire map672 repository to make a small change in one file. Therefore, for our map projects we're most proud of and want to share, we'll instead copy them into a new GitHub repository and create a gh-pages branch from that master branch. I'll walk you through that process now.
 
-Let's say for lab 08 I created a [Proportional Symbol Map of Hydro Power](http://bl.ocks.org/rgdonohue/80ef203479b5f65db8e5) using some silly Hello Kitty icons as the symbols. Again, these files may be buried deep within my course repository at *rgdonohue.github.io/map672/module-08/lab-08/lab-08-data/* . We'll want to copy this over to our new repository at the local level. But first we want to create this new repository in GitHub and clone that down to our machine.
+Let's say for lab 08 I created a [Proportional Symbol Map of Hydro Power](http://bl.ocks.org/rgdonohue/80ef203479b5f65db8e5) using some silly Hello Kitty icons as the symbols. Again, these files may be buried deep within my course repository at *rgdonohue.github.io/map672/module-08/lab-08/lab-08-data/* . We'll want to copy this over to our new repository at the local level. But first, we want to create this new repository in GitHub and clone that down to our machine.
 
 First, login to your GitHub account in the browser. You'll want to create a new repository (using the small plus dropdown at upper right). Give your new repository a descriptive name (no spaces!). You can add an optional description. Importantly, check the "Initialize this repository with a README" option. This will help you clone your repo down easily.
 
